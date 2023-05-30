@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODAY USA NEWS</title>
+    <!-- CDN Link -->
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+
+    <link rel="icon" type="favicon" href="images/pngwing.com.png">
+</head>
+<style>
+    body,
+    .modal-bg {
+        background-color: rgb(31 41 55);
+    }
+
+    .bg {
+        background-color: #383CC1;
+    }
+
+    .text-color {
+        color: #8c8080;
+    }
+
+    .text {
+        color: black;
+        font-weight: bold;
+    }
+
+    .bg-nav {
+        background-color: #0f172a;
+    }
+</style>
+
+<body>
+    <!-- header section -->
+    <header class=" ">
+        <nav class="navbar navbar-expand-lg bg-nav shadow rounded container mt-4">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold fs-4 rounded px-2 text-primary" href="#"><span
+                        class="bg text-white p-2 rounded">TODAY USA</span>
+                    News</a>
+                <button class="navbar-toggler text-white btn-close-white" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon" style="color: white;"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav ms-auto my-2">
+                        <li class="nav-item me-2">
+                            <a onclick="news('08')" class="nav-link btn btn-primary active text-white fw-bold fs-6"
+                                aria-current="page" href="#">Top
+                                News</a>
+                        </li>
+                        <li class="nav-item mt-2 mt-lg-0">
+                            <a class="nav-link btn btn-outline-primary text-color fw-bold fs-6 px-4" href="#"
+                                type="button" data-bs-toggle="modal" data-bs-target="#modalBlog">Blog</a>
+                        </li>
+                    </ul>
+                    <div>
+                        <img class="rounded-circle ms-2 w-10 h-25 d-none d-lg-block"
+                            src="https://placeimg.com/60/60/people" alt="">
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <hr class="fw-bolder text-white">
+
+        <!-- category section -->
+        <div class="container">
+            <ul id="category"
+                class="d-flex flex-column flex-lg-row justify-content-between list-unstyled mx-5 fs-5 text-white">
+                <li>
+                    <a class="text-decoration-none btn active menuButton fw-bold" href="index.html">Home</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </header>
+
+    <!-- main content -->
+    <main class="container">
+
+        <div class="mt-5 mb-5 bg-nav rounded text-white py-4 align-content-center">
+            <p class="fw-bold fs-5 m-0 ms-4"><span id="item-number">0</span> items found for category Entertainment</p>
+        </div>
+
+        <section
+            class="d-flex flex-column-reverse flex-lg-row align-items-center justify-content-between bg-nav p-3 rounded shadow">
+            <div class="d-flex align-items-center">
+                <h4 class="text-white">Sort By View:</h4>
+                <select class="form-select rounded-3 ms-2" style="width: 120px; height: 40px;">
+                    <option class="fw-semibold" value="Default">Default</option>
+                    <option class="fw-semibold" value="most-view">Most View</option>
+                    <option class="fw-semibold" value="new">New</option>
+                </select>
+            </div>
+            <div class="mb-3 mt-lg-0">
+                <button class="btn btn-primary btn-lg me-2">Today's News</button>
+                <button onclick="news('08')" class="btn btn-outline-primary btn-lg">Trending</button>
+            </div>
+        </section>
+
+        <section>
+            <div id="spiner" style="margin-top: 200px;" class="d-flex justify-content-center d-none">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+
+            <h1 id="not-founded" style="margin-top: 200px;" class="text-center text-warning d-none"><svg
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-auto"
+                    style="height: 80px;">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm-3.536-3.475a.75.75 0 001.061 0 3.5 3.5 0 014.95 0 .75.75 0 101.06-1.06 5 5 0 00-7.07 0 .75.75 0 000 1.06zM9 8.5c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S7.448 7 8 7s1 .672 1 1.5zm3 1.5c.552 0 1-.672 1-1.5S12.552 7 12 7s-1 .672-1 1.5.448 1.5 1 1.5z"
+                        clip-rule="evenodd" />
+                </svg>
+                News
+                Not Founded</h1>
+        </section>
+        <section id="news-container" class="mt-5">
+            <!-- News section -->
+        </section>
+
+        <!-- Modal section -->
+        <section>
+            <div class="modal fade" id="newsModal" tabindex="-1" aria-labelledby="newsModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-fullscreen container">
+                    <div class="modal-content modal-bg text-white container">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="newsModalLabel">
+                                <!-- modal title -->
+                            </h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div id="detalis" class="modal-body pt-0 container">
+                            <!-- modal body -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="modalBlog" tabindex="-1" aria-labelledby="modalBlogLabel" aria-hidden="true">
+                <div class="modal-dialog modal-fullscreen bg-nav text-white">
+                    <div class="modal-header container text-white btn-close-white">
+                        <h3>Assignment-6 Question And Answer.</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        </button>
+                    </div>
+                    <div class="modal-body container">
+                        <h5>Question 1: what is a difference in var let and const?</h5>
+                        <h5>Answer: Var let and const difference is:</h5>
+                        <p>
+                            <li class="fs-5">
+                                Var declarations can be globally scoped or function scoped, but let and const are only
+                                block scoped.
+                            </li>
+                            <li class="fs-5">
+                                Var variables can be updated and redeclared within their scope, let variables can be
+                                updated but not redeclared, Const variables cannot be updated or redeclared.
+                            </li>
+                            <li class="fs-5">
+                                All three types of declarations are hoisted above their scope. But while var is given
+                                undefined value, let and const are not given any value. Let and const showed error.
+                            </li>
+                            <li class="fs-5">
+                                Var and let can be declared without a value, const must be given a value when declared.
+                            </li>
+                        </p>
+                        <h5>Question 2: what is a difference arrow function and regular function?</h5>
+                        <h5>Answer:Arrow function and regular function difference is:</h5>
+                        <p>
+                            <li class="fs-5">Arrow functions can be declared in one line.</li>
+                            <li class="fs-5">Normal functions are declared in multi-line.</li>
+                            <li class="fs-5">Aero function is the new version of ES6</li>
+                            <li class="fs-5">Normal function old version</li>
+                        </p>
+                        <h5>Question 3:what is difference map, foreach, filter?</h5>
+                        <p>
+                            <li class="fs-5">
+                                Foreach is used to execute the same code on every element in an array but does not
+                                change the array and it returns undefined.
+                            </li>
+                            <li class="fs-5">
+                                Map executes the same code on every element in an array and returns a new array with the
+                                updated elements.
+                            </li>
+                            <li class="fs-5">
+                                Filter checks every element in an array to see if it meets a definite value and returns
+                                a new array with the elements that return truthy for the element.
+                            </li>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="blockquote-footer mt-5 p-4 bg-nav text-center">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" style="height: 80px;" viewBox="0 0 512 512">
+                <path
+                    d="M415.44 512h-95.11L212.12 357.46v91.1L125.69 512H28V29.82L68.47 0h108.05l123.74 176.13V63.45L386.69 0h97.69v461.5zM38.77 35.27V496l72-52.88V194l215.5 307.64h84.79l52.35-38.17h-78.27L69 13zm82.54 466.61l80-58.78v-101l-79.76-114.4v220.94L49 501.89h72.34zM80.63 10.77l310.6 442.57h82.37V10.77h-79.75v317.56L170.91 10.77zM311 191.65l72 102.81V15.93l-72 53v122.72z" />
+            </svg>
+            <p class="fs-6 text-white">
+                TODAY USA News
+                <br>
+                Providing reliable technology 2022 By
+                <a href="https://www.linkedin.com/in/md-sujon-mia-547a51243/"
+                    class="text-decoration-underline hover:underline">
+                    Md Sujon Mia</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="bootstrap/bootstrap.min.js"></script>
+    <script src="script/news.js"></script>
+</body>
+
+</html>
